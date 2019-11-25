@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/6.html " >石名的技术博客</a>
+		<p><strong>django 实现简单的搜索功能</strong></p>
+<p>搜索是一个复杂的功能，但对于一些简单的搜索任务，我们可以使用 django model 层提供的一些内置方法来完成。本文将结合 django 模型管理器的 filter 方法和 icontains 查询表达式来实现一个简单的搜索功能。</p>
+<p><strong>1、urls.py</strong></p>
+<div class="highlight"><pre><span></span>url(r&#39;^search/$&#39;, views.search,name=&#39;search&#39;),
+</pre></div>
+
+
+<p><strong>2、views.py</strong></p>
+<div class="highlight"><pre><span></span>def search(request):
+    keyword = request.GET.get(&#39;keyword&#39;,None)
+    if not keyword:
+        error_msg = &quot;请输入关键字&quot;
+        return render(request,&#39;index.html&#39;,locals())
+    result = models.Article.objects.filter(Q(title__icontains=keyword)
+                                          | Q(body__icontains=keyword))
+    return render(request, &#39;search.html&#39;, locals())
+</pre></div>
+
+
+<p>这里的过滤条件时title__icontains=keyword，即 title 中包含（contains）关键字 q，前缀 i 表示不区分大小写。这里icontains是查询表达式（Field lookups)，我们在之前也使用过其他类似的查询表达式，其用法是在模型需要筛选的属性后面跟上两个下划线。</p>
+<p><strong>3、搜索框入口</strong></p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;form</span> <span class="na">class=</span><span class="s">&quot;navbar-form navbar-left&quot;</span> <span class="na">action=</span><span class="s">&quot;{% url &#39;search&#39; %}&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;Search&quot;</span> <span class="na">name=</span><span class="s">&quot;keyword&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-default&quot;</span><span class="nt">&gt;</span>搜索<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/form&gt;</span>
+</pre></div>
+
+
+<p><strong>4.搜索结果模板</strong></p>
+<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">keyword</span> <span class="cp">}}</span>搜索结果<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>查找结果<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="cp">{%</span> <span class="k">for</span> <span class="nv">item</span> <span class="k">in</span> <span class="nv">result</span> <span class="cp">%}</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="cp">{{</span> <span class="nv">item.title</span> <span class="cp">}}</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="cp">{{</span> <span class="nv">item.article</span> <span class="cp">}}</span>
+<span class="cp">{%</span> <span class="k">endfor</span> <span class="cp">%}</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

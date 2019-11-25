@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/1.html " >石名的技术博客</a>
+		<p><strong>python创建虚拟环境</strong></p>
+<p>Windows安装
+<strong>方案一</strong>
+1、安装</p>
+<div class="highlight"><pre><span></span>pip install virtualenv
+pip install virtualenvwrapper-win
+</pre></div>
+
+
+<p>2、设置环境变量WORKON_HOME指定virtualenvwrapper虚拟环境默认路径
+image
+重启cmd</p>
+<p>3、创建虚拟环境</p>
+<div class="highlight"><pre><span></span>mkvirtualenv env
+</pre></div>
+
+
+<p>env为虚拟环境名字
+4、激活虚拟环境</p>
+<div class="highlight"><pre><span></span>workon env
+</pre></div>
+
+
+<p>看到命令提示符前边多了虚拟环境的名字，说明激活成功</p>
+<p>方案二
+cmd下执行以下命令</p>
+<p>1、安装</p>
+<div class="highlight"><pre><span></span>pip install virtualenv
+</pre></div>
+
+
+<p>2、(可以指定任意路径)</p>
+<div class="highlight"><pre><span></span>virtualenv D:\virtualenv\study
+</pre></div>
+
+
+<p>3、激活虚拟环境</p>
+<div class="highlight"><pre><span></span><span class="n">D</span><span class="o">:</span><span class="n">virtualenv</span><span class="o">\</span><span class="n">study</span><span class="o">\</span><span class="n">Scripts</span><span class="o">\</span><span class="n">activate</span>
+</pre></div>
+
+
+<p>看到命令提示符前边多了虚拟环境的名字，说明激活成功</p>
+<p>Linux安装
+1 …</p>
+		<a class="btnmore" href="/1.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/10.html " >石名的技术博客</a>
+		<p><strong>Vue指令大全</strong></p>
+<ol>
+<li>v-text
+v-text主要用来更新textContent，可以等同于JS的text属性。</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nt">&lt;span</span> <span class="na">v-text=</span><span class="s">&quot;msg&quot;</span><span class="nt">&gt;&lt;/span&gt;</span>
+</pre></div>
+
+
+<p>这两者等价：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;span&gt;</span><span class="cp">{{</span><span class="nv">msg</span><span class="cp">}}</span><span class="nt">&lt;/span&gt;</span>
+</pre></div>
+
+
+<ol>
+<li>v-html
+双大括号的方式会将数据解释为纯文本，而非HTML。为了输出真正的HTML，可以用v-html指令。它等同于JS的innerHtml属性。</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">v-html=</span><span class="s">&quot;rawHtml&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
+</pre></div>
+
+
+<p>这个div的内容将会替换成属性值rawHtml，直接作为HTML进行渲染。</p>
+<ol>
+<li>v-pre
+v-pre主要用来跳过这个元素和它的子元素编译过程。可以用来显示原始的Mustache标签。跳过大量没有指令的节点加快编译。</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;app&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;span</span> <span class="err">v-pre</span><span class="nt">&gt;</span><span class="cp">{{</span><span class="nv">message</span><span class="cp">}}</span><span class="nt">&lt;/span&gt;</span>  //这条语句不进行编译
+    <span class="nt">&lt;span&gt;</span><span class="cp">{{</span><span class="nv">message</span><span class="cp">}}</span><span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+
+
+<p>最终仅显示第二个span的内容</p>
+<ol>
+<li>v-cloak
+这个指令是用来保持在元素上直到关联实例结束时进行编译。</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;app&quot;</span> <span class="err">v-cloak</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+        <span class="cp">{{</span><span class="nv">message</span><span class="cp">}}</span>
+    <span class="nt">&lt;/div …</span></pre></div>
+		<a class="btnmore" href="/10.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/2.html " >石名的技术博客</a>
+		<p><strong>Django 基于vue和ajax的分页</strong></p>
+<p><strong>1、基本工作原理：</strong>
+前后端分离。</p>
+<p>查询数据 --&gt; render 传递数据到前端，前后端绑定在了一起。</p>
+<p>后端只负责返回数据</p>
+<p>前端只负责数据的展示</p>
+<p>前端渲染不再使用django的模板系统，而是使用vue框架。</p>
+<p>设计模式：组建项目和代码结构的思路。</p>
+<p>MVC</p>
+<p>M models</p>
+<p>V views</p>
+<p>C control</p>
+<p>MTV</p>
+<p>M models</p>
+<p>T templates</p>
+<p>V views</p>
+<p>MVVM</p>
+<p>M models</p>
+<p>V views</p>
+<p>V views</p>
+<p>M models</p>
+<p>数据双向绑定</p>
+<p>将数据（M）通过后端试图（V）传递到前端是试图模型(VM),然后进行数据绑定，当数据发送修 改，自动传递到试图当中</p>
+<p><strong>1 …</strong></p>
+		<a class="btnmore" href="/2.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/3.html " >石名的技术博客</a>
+		<div class="highlight"><pre><span></span>**Supervisor**
+</pre></div>
+
+
+<p>介绍</p>
+<p>Supervisor就是一个超级管理员，监管员。Supervisor是一个进程管理工具，当进程中断的时候Supervisor能自动重新启动它。</p>
+<p>Supervisor安装与配置</p>
+<div class="highlight"><pre><span></span>1、安装Python包管理工具(easy_install)
+</pre></div>
+
+
+<p>2、安装Supervisor</p>
+<div class="highlight"><pre><span></span>easy_install supervisor
+</pre></div>
+
+
+<p>3、配置Supervisor应用守护
+a) 通过运行echo_supervisord_conf程序生成supervisor的初始化配置文件，如下所示：</p>
+<div class="highlight"><pre><span></span>mkdir /etc/supervisor
+echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf
+</pre></div>
+
+
+<p>然后查看路径下的supervisord.conf。在文件尾部添加如下配置。</p>
+<div class="highlight"><pre><span></span>;[include]
+;files = relative/directory/*.ini
+
+;conf.d 为配置表目录的文件夹，需要手动创建
+[include]
+files = conf.d/*.conf
+</pre></div>
+
+
+<p>b) 为你的程序创建一个.conf文件，放在目录"/etc/supervisor …</p>
+		<a class="btnmore" href="/3.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/4.html " >石名的技术博客</a>
+		<p><strong>码云上传文件命令</strong></p>
+<p>简易的命令行入门教程:</p>
+<p>Git 全局设置:</p>
+<div class="highlight"><pre><span></span>git config --global user.name &quot;name&quot;
+git config --global user.email &quot;5474358+sm521fhz@user.noreply.gitee.com&quot;
+</pre></div>
+
+
+<p>创建 git 仓库:</p>
+<div class="highlight"><pre><span></span>mkdir vvvv
+cd vvvv
+git init
+touch README.md
+git add README.md
+git commit -m &quot;first commit&quot;
+git remote add origin https://gitee.com/sm521fhz …</pre></div>
+		<a class="btnmore" href="/4.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/5.html " >石名的技术博客</a>
+		<p><strong>Vue插件之滑动验证码</strong></p>
+<p>安装</p>
+<div class="highlight"><pre><span></span>npm install --save vue-monoplasty-slide-verify
+</pre></div>
+
+
+<p>使用方法</p>
+<div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">main</span><span class="o">.</span><span class="n">js</span>
+<span class="kn">import</span> <span class="nn">Vue</span> <span class="nn">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">SlideVerify</span> <span class="nn">from</span> <span class="s1">&#39;vue-monoplasty-slide-verify&#39;</span><span class="p">;</span>
+
+<span class="n">Vue</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">SlideVerify</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">template</span>
+<span class="o">&lt;</span><span class="n">slide</span><span class="o">-</span><span class="n">verify</span> <span class="p">:</span><span class="n">l</span><span class="o">=</span><span class="s2">&quot;42&quot;</span>
+            <span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;10&quot;</span>
+            <span class="p">:</span><span class="n">w</span><span class="o">=</span><span class="s2">&quot;310&quot;</span>
+            <span class="p">:</span><span class="n">h</span><span class="o">=</span><span class="s2">&quot;155&quot;</span>
+            <span class="nd">@success</span><span class="o">=</span><span class="s2">&quot;onSuccess&quot;</span>
+            <span class="nd">@fail</span><span class="o">=</span><span class="s2">&quot;onFail&quot;</span>
+            <span class="nd">@refresh</span><span class="o">=</span><span class="s2">&quot;onRefresh&quot;</span>
+            <span class="p">:</span><span class="n">slider</span><span class="o">-</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+            <span class="o">&gt;&lt;/</span><span class="n">slide</span><span class="o">-</span><span class="n">verify</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">msg</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">script</span>
+<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
+   <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;App …</span></pre></div>
+		<a class="btnmore" href="/5.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/6.html " >石名的技术博客</a>
+		<p><strong>django 实现简单的搜索功能</strong></p>
+<p>搜索是一个复杂的功能，但对于一些简单的搜索任务，我们可以使用 django model 层提供的一些内置方法来完成。本文将结合 django 模型管理器的 filter 方法和 icontains 查询表达式来实现一个简单的搜索功能。</p>
+<p><strong>1、urls.py</strong></p>
+<div class="highlight"><pre><span></span>url(r&#39;^search/$&#39;, views.search,name=&#39;search&#39;),
+</pre></div>
+
+
+<p><strong>2、views.py</strong></p>
+<div class="highlight"><pre><span></span>def search(request):
+    keyword = request.GET.get(&#39;keyword&#39;,None)
+    if not keyword:
+        error_msg = &quot;请输入关键字&quot;
+        return render(request,&#39;index.html&#39;,locals())
+    result = models …</pre></div>
+		<a class="btnmore" href="/6.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/7.html " >石名的技术博客</a>
+		<p><strong>django多对多操作</strong></p>
+<p>django 多对多操作</p>
+<p><strong>模型</strong></p>
+<p>~~~~shell from django.db import models</p>
+<h1>老师 class Teacher(models.Model): name = models.CharField(max_length=32)</h1>
+<h1>学生 class Student(models.Model): name = models.CharField(max_length=32)</h1>
+<p>teachers = models.ManyToManyField(to='Teacher',on_delete=models.CASCADE) ```</p>
+<p>查询</p>
+<div class="highlight"><pre><span></span>**添加**
+</pre></div>
+
+
+<p>shell # 通过老师查学生 teacher = Teacher.objects.filter(id=1).first()
+ students …</p>
+		<a class="btnmore" href="/7.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/8.html " >石名的技术博客</a>
+		<h1><code>VUE拦截器</code></h1>
+<p>vue 拦截器</p>
+<p>路由拦截器</p>
+<p>已路由为导向</p>
+<div class="highlight"><pre><span></span>shell
+  router.beforeEach((to,from,next)=&gt;{
+      if(to.path==&#39;/login&#39; || to.path==&#39;reg&#39; || localStorage.getItem(&#39;token&#39;)){
+        next();
+      }else{
+        alert(&#39;请重新登录&#39;);
+        next(&#39;/login&#39;);
+      }
+  })
+</pre></div>
+
+
+<p>请求拦截器</p>
+<p>当发送请求时才会触发此功能</p>
+<div class="highlight"><pre><span></span>shell
+  axios.interceptors.request.use(function (config) {
+    let token = window.localStorage.getItem(&quot;token&quot;);
+        if (token) {
+            config.headers.token = token;    //将token放到请求头发送给服务器
+        }
+       return …</pre></div>
+		<a class="btnmore" href="/8.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/9.html " >石名的技术博客</a>
+		<p><strong>Django+中间件+登陆验证</strong></p>
+<p>Django的request请求需要首先经过中间件处理，再通过URL查找到对应的views函数进行处理。在settings的MIDDLEWARE_CLASSES中添加设置中间件进行激活，大致原理如下图所示：</p>
+<p>https://images2015.cnblogs.com/blog/790508/201705/790508-20170501212912023-388357388.png</p>
+<p>在使用Django框架进行开发的过程中，遇到一个问题：要求对觉得多数页面请求request进行用户登录验证，如果用户没有登录则跳转回到登录页面；如果用户登录了，则直接跳转到新的链接页面？</p>
+<p>在django中提供了一种自定义装饰器@login_required来实现验证用户登录：</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span>
+ <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;home.html&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>但是这种方式有一个不方便的地方：如果每添加一个功能需要验证登录，就需要添加@login_required来进行装饰。如果有大量的功能需要进行登录验证 …</p>
+		<a class="btnmore" href="/9.html">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+    Page 1 / 1
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

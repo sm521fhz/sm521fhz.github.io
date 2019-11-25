@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/1.html " >石名的技术博客</a>
+		<p><strong>python创建虚拟环境</strong></p>
+<p>Windows安装
+<strong>方案一</strong>
+1、安装</p>
+<div class="highlight"><pre><span></span>pip install virtualenv
+pip install virtualenvwrapper-win
+</pre></div>
+
+
+<p>2、设置环境变量WORKON_HOME指定virtualenvwrapper虚拟环境默认路径
+image
+重启cmd</p>
+<p>3、创建虚拟环境</p>
+<div class="highlight"><pre><span></span>mkvirtualenv env
+</pre></div>
+
+
+<p>env为虚拟环境名字
+4、激活虚拟环境</p>
+<div class="highlight"><pre><span></span>workon env
+</pre></div>
+
+
+<p>看到命令提示符前边多了虚拟环境的名字，说明激活成功</p>
+<p>方案二
+cmd下执行以下命令</p>
+<p>1、安装</p>
+<div class="highlight"><pre><span></span>pip install virtualenv
+</pre></div>
+
+
+<p>2、(可以指定任意路径)</p>
+<div class="highlight"><pre><span></span>virtualenv D:\virtualenv\study
+</pre></div>
+
+
+<p>3、激活虚拟环境</p>
+<div class="highlight"><pre><span></span><span class="n">D</span><span class="o">:</span><span class="n">virtualenv</span><span class="o">\</span><span class="n">study</span><span class="o">\</span><span class="n">Scripts</span><span class="o">\</span><span class="n">activate</span>
+</pre></div>
+
+
+<p>看到命令提示符前边多了虚拟环境的名字，说明激活成功</p>
+<p>Linux安装
+1、安装virtualenv</p>
+<div class="highlight"><pre><span></span>pip install virtualenv
+</pre></div>
+
+
+<p>配置</p>
+<p>vim 打开 ~/.bashrc</p>
+<p>vim ~/.bashrc
+添加代码：</p>
+<div class="highlight"><pre><span></span>export VIRTUALENV_USE_DISTRIBUTE=true
+</pre></div>
+
+
+<p>2、安装virtualenvwrapper</p>
+<div class="highlight"><pre><span></span>pip install virtualenvwrapper
+指定virtualenvwrapper虚拟环境默认路径
+</pre></div>
+
+
+<p>vim 打开 ~/.bashrc</p>
+<p>vim ~/.bashrc
+添加代码</p>
+<div class="highlight"><pre><span></span># config virtualenvwrapper
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=$HOME/.virtualenvs
+  source /usr/local/bin/virtualenvwrapper.sh
+fi
+source ~/.bashrc
+</pre></div>
+
+
+<p>3、创建虚拟环境</p>
+<div class="highlight"><pre><span></span>mkvirtualenv env
+</pre></div>
+
+
+<p>env为虚拟环境名字
+4、激活虚拟环境</p>
+<div class="highlight"><pre><span></span>workon env
+</pre></div>
+
+
+<p>看到命令提示符前边多了虚拟环境的名字，说明激活成功</p>
+<p>其他命令
+退出虚拟环境</p>
+<div class="highlight"><pre><span></span>deactivate
+</pre></div>
+
+
+<p>删除虚拟环境的命令</p>
+<p>rmvirtualenv 虚拟环境名称
+查看所有虚拟环境</p>
+<div class="highlight"><pre><span></span>lsvirtualenv
+</pre></div>
+
+
+<p>启动虚拟环境s</p>
+<div class="highlight"><pre><span></span>workon env
+</pre></div>
+
+
+<p>退出虚拟环境</p>
+<div class="highlight"><pre><span></span>deactivate
+</pre></div>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

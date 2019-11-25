@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/9.html " >石名的技术博客</a>
+		<p><strong>Django+中间件+登陆验证</strong></p>
+<p>Django的request请求需要首先经过中间件处理，再通过URL查找到对应的views函数进行处理。在settings的MIDDLEWARE_CLASSES中添加设置中间件进行激活，大致原理如下图所示：</p>
+<p>https://images2015.cnblogs.com/blog/790508/201705/790508-20170501212912023-388357388.png</p>
+<p>在使用Django框架进行开发的过程中，遇到一个问题：要求对觉得多数页面请求request进行用户登录验证，如果用户没有登录则跳转回到登录页面；如果用户登录了，则直接跳转到新的链接页面？</p>
+<p>在django中提供了一种自定义装饰器@login_required来实现验证用户登录：</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span>
+ <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;home.html&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>但是这种方式有一个不方便的地方：如果每添加一个功能需要验证登录，就需要添加@login_required来进行装饰。如果有大量的功能需要进行登录验证，工作量会增大。或者如果因为需求变化，删除装饰器，这种工作量会比较麻烦。</p>
+<p>所以在学习过程中，想到使用django的中间件来进行登录验证，在settings中增加参数，排除不需要登录的url,如：</p>
+<div class="highlight"><pre><span></span>EXCLUDE_URL =  (
+     &#39;/login/&#39;,
+    &#39;/logout&#39;,      
+)
+</pre></div>
+
+
+<p>然后再创建一个中间件模块，将此中间件添加到MIDDLEWARE_CLASSES中，定义process_request函数，对登录的url进行验证：</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">djangoMiddleware.settings</span> <span class="kn">import</span> <span class="n">EXCLUDE_URL</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">HttpResponseRedirect</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">exclued_path</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">EXCLUDE_URL</span><span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">PubAuthMiddleWare</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">url_path</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span>
+        <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">exclued_path</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">each</span><span class="p">,</span> <span class="n">url_path</span><span class="p">):</span>
+                <span class="k">return</span>
+        <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">HttpResponseRedirect</span><span class="p">(</span><span class="s1">&#39;/logout&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span>
+</pre></div>
+
+
+<p>其中的exclude_path为不需要验证登录的url，直接return进入响应的views.fun进行处理。</p>
+<p>Django的中间件是很方便的，当需要对所有的request进行相同的处理时，可以使用中间件进行处理，很方便。</p>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

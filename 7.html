@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/7.html " >石名的技术博客</a>
+		<p><strong>django多对多操作</strong></p>
+<p>django 多对多操作</p>
+<p><strong>模型</strong></p>
+<p>~~~~shell from django.db import models</p>
+<h1>老师 class Teacher(models.Model): name = models.CharField(max_length=32)</h1>
+<h1>学生 class Student(models.Model): name = models.CharField(max_length=32)</h1>
+<p>teachers = models.ManyToManyField(to='Teacher',on_delete=models.CASCADE) ```</p>
+<p>查询</p>
+<div class="highlight"><pre><span></span>**添加**
+</pre></div>
+
+
+<p>shell # 通过老师查学生 teacher = Teacher.objects.filter(id=1).first()
+ students = teacher.student_set.all() # 获取所有学生信息</p>
+<h1>通过学生查老师 student = Student.objects.filter(id=2).first()</h1>
+<p>teachers = student.teachers.all() # 获取所有老师的信息</p>
+<div class="highlight"><pre><span></span>**添加**
+</pre></div>
+
+
+<p>shell # 学生选择老师 t1 = Teacher.objects.filter(id=1).first() 
+t2 = Teacher.objects.filter(id=2).first() 
+t3 = Teacher.objects.filter(id=3).first() 
+s1 = Student.objects.filter(id=4).first() s1.teacher.add(*[t1,t2,t3]) # 学生选择了三个老师</p>
+<h1>老师选择学生 s1 = Student.objects.filter(id=4).first()</h1>
+<p>s2 = Student.objects.filter(id=5).first() 
+t1.student_set.add(*[s1,s2]) # 老师选择了两个学生 ```</p>
+<div class="highlight"><pre><span></span>**清空**
+****
+shell # 通过老师清空 t1 = Teacher.objects.filter(id=1).first() 
+t1.student.clear()
+
+# 通过学生清空 s1 = Student.objects.filter(id=1).first() 
+s1.teacher.clear()
+****
+
+**删除指定数据**
+</pre></div>
+
+
+<p>shell t1 = Teacher.objects.filter(id=1).first() 
+s1 = Student.objects.filter(id=1).first() # 以老师的角度删除与学生之间的关系 
+t1.student_set.remove(s1) # 以学生的角度删除与老师之间的关系 s1.teacher.remove(t1)
+~~~~</p>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

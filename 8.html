@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/8.html " >石名的技术博客</a>
+		<h1><code>VUE拦截器</code></h1>
+<p>vue 拦截器</p>
+<p>路由拦截器</p>
+<p>已路由为导向</p>
+<div class="highlight"><pre><span></span>shell
+  router.beforeEach((to,from,next)=&gt;{
+      if(to.path==&#39;/login&#39; || to.path==&#39;reg&#39; || localStorage.getItem(&#39;token&#39;)){
+        next();
+      }else{
+        alert(&#39;请重新登录&#39;);
+        next(&#39;/login&#39;);
+      }
+  })
+</pre></div>
+
+
+<p>请求拦截器</p>
+<p>当发送请求时才会触发此功能</p>
+<div class="highlight"><pre><span></span>shell
+  axios.interceptors.request.use(function (config) {
+    let token = window.localStorage.getItem(&quot;token&quot;);
+        if (token) {
+            config.headers.token = token;    //将token放到请求头发送给服务器
+        }
+       return config; // 最终需要返回config
+      }, function (error) {
+         return Promise.reject(error);
+  })
+</pre></div>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

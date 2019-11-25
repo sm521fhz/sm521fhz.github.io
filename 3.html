@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/3.html " >石名的技术博客</a>
+		<div class="highlight"><pre><span></span>**Supervisor**
+</pre></div>
+
+
+<p>介绍</p>
+<p>Supervisor就是一个超级管理员，监管员。Supervisor是一个进程管理工具，当进程中断的时候Supervisor能自动重新启动它。</p>
+<p>Supervisor安装与配置</p>
+<div class="highlight"><pre><span></span>1、安装Python包管理工具(easy_install)
+</pre></div>
+
+
+<p>2、安装Supervisor</p>
+<div class="highlight"><pre><span></span>easy_install supervisor
+</pre></div>
+
+
+<p>3、配置Supervisor应用守护
+a) 通过运行echo_supervisord_conf程序生成supervisor的初始化配置文件，如下所示：</p>
+<div class="highlight"><pre><span></span>mkdir /etc/supervisor
+echo_supervisord_conf &gt; /etc/supervisor/supervisord.conf
+</pre></div>
+
+
+<p>然后查看路径下的supervisord.conf。在文件尾部添加如下配置。</p>
+<div class="highlight"><pre><span></span>;[include]
+;files = relative/directory/*.ini
+
+;conf.d 为配置表目录的文件夹，需要手动创建
+[include]
+files = conf.d/*.conf
+</pre></div>
+
+
+<p>b) 为你的程序创建一个.conf文件，放在目录"/etc/supervisor/conf.d/"下。</p>
+<div class="highlight"><pre><span></span><span class="cp">[</span><span class="nx">program</span><span class="p">:</span><span class="nx">MGToastServer</span><span class="cp">]</span> <span class="o">;</span><span class="nt">程序名称</span><span class="err">，</span><span class="nt">终端控制时需要的标识</span>
+<span class="nt">command</span><span class="o">=</span><span class="nt">dotnet</span> <span class="nt">MGToastServer</span><span class="p">.</span><span class="nc">dll</span> <span class="o">;</span> <span class="nt">运行程序的命令</span>
+<span class="nt">directory</span><span class="o">=/</span><span class="nt">root</span><span class="o">/</span><span class="nt">文档</span><span class="o">/</span><span class="nt">toastServer</span><span class="o">/</span> <span class="o">;</span> <span class="nt">命令执行的目录</span>
+<span class="nt">autorestart</span><span class="o">=</span><span class="nt">true</span> <span class="o">;</span> <span class="nt">程序意外退出是否自动重启</span>
+<span class="nt">stderr_logfile</span><span class="o">=/</span><span class="nt">var</span><span class="o">/</span><span class="nt">log</span><span class="o">/</span><span class="nt">MGToastServer</span><span class="p">.</span><span class="nc">err</span><span class="p">.</span><span class="nc">log</span> <span class="o">;</span> <span class="nt">错误日志文件</span>
+<span class="nt">stdout_logfile</span><span class="o">=/</span><span class="nt">var</span><span class="o">/</span><span class="nt">log</span><span class="o">/</span><span class="nt">MGToastServer</span><span class="p">.</span><span class="nc">out</span><span class="p">.</span><span class="nc">log</span> <span class="o">;</span> <span class="nt">输出日志文件</span>
+<span class="nt">environment</span><span class="o">=</span><span class="nt">ASPNETCORE_ENVIRONMENT</span><span class="o">=</span><span class="nt">Production</span> <span class="o">;</span> <span class="nt">进程环境变量</span>
+<span class="nt">user</span><span class="o">=</span><span class="nt">root</span> <span class="o">;</span> <span class="nt">进程执行的用户身份</span>
+<span class="nt">stopsignal</span><span class="o">=</span><span class="nt">INT</span>
+</pre></div>
+
+
+<p>c) 运行supervisord，查看是否生效</p>
+<div class="highlight"><pre><span></span>supervisord -c /etc/supervisor/supervisord.conf
+ps -ef | grep MGToastServer
+</pre></div>
+
+
+<p>ps 如果服务已启动，修改配置文件可用“supervisorctl reload”命令来使其生效</p>
+<p>4、配置Supervisor开机启动
+a) 新建一个“supervisord.service”文件</p>
+<div class="highlight"><pre><span></span># dservice for systemd (CentOS 7.0+)
+# by ET-CS (https://github.com/ET-CS)
+[Unit]
+Description=Supervisor daemon
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/supervisord -c /etc/supervisor/supervisord.conf
+ExecStop=/usr/bin/supervisorctl shutdown
+ExecReload=/usr/bin/supervisorctl reload
+KillMode=process
+Restart=on-failure
+RestartSec=42s
+
+[Install]
+WantedBy=multi-user.target
+</pre></div>
+
+
+<p>b) 将文件拷贝至"/usr/lib/systemd/system/supervisord.service"</p>
+<p>c) 执行命令</p>
+<div class="highlight"><pre><span></span>systemctl enable supervisord
+</pre></div>
+
+
+<p>d) 执行命令来验证是否为开机启动</p>
+<div class="highlight"><pre><span></span>systemctl is-enabled supervisord
+</pre></div>
+
+
+<p>配置完成啦.
+常用的相关管理命令</p>
+<div class="highlight"><pre><span></span>supervisorctl restart &lt;application name&gt; ;重启指定应用
+supervisorctl stop &lt;application name&gt; ;停止指定应用
+supervisorctl start &lt;application name&gt; ;启动指定应用
+supervisorctl restart all ;重启所有应用
+supervisorctl stop all ;停止所有应用
+supervisorctl start all ;启动所有应用
+</pre></div>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

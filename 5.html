@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/5.html " >石名的技术博客</a>
+		<p><strong>Vue插件之滑动验证码</strong></p>
+<p>安装</p>
+<div class="highlight"><pre><span></span>npm install --save vue-monoplasty-slide-verify
+</pre></div>
+
+
+<p>使用方法</p>
+<div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">main</span><span class="o">.</span><span class="n">js</span>
+<span class="kn">import</span> <span class="nn">Vue</span> <span class="nn">from</span> <span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">SlideVerify</span> <span class="nn">from</span> <span class="s1">&#39;vue-monoplasty-slide-verify&#39;</span><span class="p">;</span>
+
+<span class="n">Vue</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">SlideVerify</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">template</span>
+<span class="o">&lt;</span><span class="n">slide</span><span class="o">-</span><span class="n">verify</span> <span class="p">:</span><span class="n">l</span><span class="o">=</span><span class="s2">&quot;42&quot;</span>
+            <span class="p">:</span><span class="n">r</span><span class="o">=</span><span class="s2">&quot;10&quot;</span>
+            <span class="p">:</span><span class="n">w</span><span class="o">=</span><span class="s2">&quot;310&quot;</span>
+            <span class="p">:</span><span class="n">h</span><span class="o">=</span><span class="s2">&quot;155&quot;</span>
+            <span class="nd">@success</span><span class="o">=</span><span class="s2">&quot;onSuccess&quot;</span>
+            <span class="nd">@fail</span><span class="o">=</span><span class="s2">&quot;onFail&quot;</span>
+            <span class="nd">@refresh</span><span class="o">=</span><span class="s2">&quot;onRefresh&quot;</span>
+            <span class="p">:</span><span class="n">slider</span><span class="o">-</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+            <span class="o">&gt;&lt;/</span><span class="n">slide</span><span class="o">-</span><span class="n">verify</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{{</span><span class="n">msg</span><span class="p">}}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="o">//</span> <span class="n">script</span>
+<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
+   <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;App&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">(){</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="n">msg</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">text</span><span class="p">:</span> <span class="s1">&#39;向右滑&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="n">methods</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">onSuccess</span><span class="p">(){</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;login success&#39;</span>
+        <span class="p">},</span>
+        <span class="n">onFail</span><span class="p">(){</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="p">},</span>
+        <span class="n">onRefresh</span><span class="p">(){</span>
+            <span class="n">this</span><span class="o">.</span><span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>
