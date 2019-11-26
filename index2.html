@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/7.html " >石名的技术博客</a>
+		<p><strong>django多对多操作</strong></p>
+<p>django 多对多操作</p>
+<p><strong>模型</strong></p>
+<p>~~~~shell from django.db import models</p>
+<h1>老师 class Teacher(models.Model): name = models.CharField(max_length=32)</h1>
+<h1>学生 class Student(models.Model): name = models.CharField(max_length=32)</h1>
+<p>teachers = models.ManyToManyField(to='Teacher',on_delete=models.CASCADE) ```</p>
+<p>查询</p>
+<div class="highlight"><pre><span></span>**添加**
+</pre></div>
+
+
+<p>shell # 通过老师查学生 teacher = Teacher.objects.filter(id=1).first()
+ students …</p>
+		<a class="btnmore" href="/7.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/8.html " >石名的技术博客</a>
+		<h1><code>VUE拦截器</code></h1>
+<p>vue 拦截器</p>
+<p>路由拦截器</p>
+<p>已路由为导向</p>
+<div class="highlight"><pre><span></span>shell
+  router.beforeEach((to,from,next)=&gt;{
+      if(to.path==&#39;/login&#39; || to.path==&#39;reg&#39; || localStorage.getItem(&#39;token&#39;)){
+        next();
+      }else{
+        alert(&#39;请重新登录&#39;);
+        next(&#39;/login&#39;);
+      }
+  })
+</pre></div>
+
+
+<p>请求拦截器</p>
+<p>当发送请求时才会触发此功能</p>
+<div class="highlight"><pre><span></span>shell
+  axios.interceptors.request.use(function (config) {
+    let token = window.localStorage.getItem(&quot;token&quot;);
+        if (token) {
+            config.headers.token = token;    //将token放到请求头发送给服务器
+        }
+       return …</pre></div>
+		<a class="btnmore" href="/8.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/9.html " >石名的技术博客</a>
+		<p><strong>Django+中间件+登陆验证</strong></p>
+<p>Django的request请求需要首先经过中间件处理，再通过URL查找到对应的views函数进行处理。在settings的MIDDLEWARE_CLASSES中添加设置中间件进行激活，大致原理如下图所示：</p>
+<p>https://images2015.cnblogs.com/blog/790508/201705/790508-20170501212912023-388357388.png</p>
+<p>在使用Django框架进行开发的过程中，遇到一个问题：要求对觉得多数页面请求request进行用户登录验证，如果用户没有登录则跳转回到登录页面；如果用户登录了，则直接跳转到新的链接页面？</p>
+<p>在django中提供了一种自定义装饰器@login_required来实现验证用户登录：</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+
+<span class="nd">@login_required</span>
+ <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;home.html&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>但是这种方式有一个不方便的地方：如果每添加一个功能需要验证登录，就需要添加@login_required来进行装饰。如果有大量的功能需要进行登录验证 …</p>
+		<a class="btnmore" href="/9.html">more ...</a>
+	</div>
+</div>
+
+<p class="paginator">
+            <a href="/index.html">&laquo;prev</a>
+    Page 2 / 2
+</p>
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

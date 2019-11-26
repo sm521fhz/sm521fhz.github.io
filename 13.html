@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/13.html " >石名的技术博客</a>
+		<p><strong>三分钟创建一个静态网页</strong></p>
+<p><strong>这个静态网页可以用来做你自己的博客，pelican是以为法国开发者研发的，非常好用，它的每一篇文章会事先渲染成HTML静态文件，访问速度非常快。</strong></p>
+<p>1)安装pelcan和markdown</p>
+<div class="highlight"><pre><span></span>pip install pelican  markdown --upgrade
+</pre></div>
+
+
+<p>2)创建一个文件夹用来作为博客的目录</p>
+<div class="highlight"><pre><span></span>mkdir 博客目录
+</pre></div>
+
+
+<p>3)cd到该目录下运行命令生成博客的框架</p>
+<div class="highlight"><pre><span></span>cd 博客目录
+pelican-quickstart
+</pre></div>
+
+
+<p>4)安装过程中会有很多的配置，不知道的可以直接n，后期都是可以进行修改的</p>
+<div class="highlight"><pre><span></span>&gt; Where do you want to create your new web site? [.]
+&gt; What will be the title of this web site? 商伟的技术博客
+&gt; Who will be the author of this web site? 商伟
+&gt; What will be the default language of this web site? [Chinese (Simplified)]
+&gt; Do you want to specify a URL prefix? e.g., https://example.com   (Y/n) n
+&gt; Do you want to enable article pagination? (Y/n) y
+&gt; How many articles per page do you want? [10]
+&gt; What is your time zone? [Europe/Paris]
+&gt; Do you want to generate a tasks.py/Makefile to automate generation and publishing? (Y/n) y
+&gt; Do you want to upload your website using FTP? (y/N) n
+&gt; Do you want to upload your website using SSH? (y/N) n
+&gt; Do you want to upload your website using Dropbox? (y/N) n
+&gt; Do you want to upload your website using S3? (y/N) n
+&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N) n
+&gt; Do you want to upload your website using GitHub Pages? (y/N) y
+&gt; Is this your personal page (username.github.io)? (y/N) y
+Done. Your new project is available at C:\Users\lx\Desktop\python\lian\dierzu
+</pre></div>
+
+
+<p>5)现在你的目录下会有很多的文件，在content目录下，是你写文章的地方，我们通常情况下使用markdown语法</p>
+<p>6)我们现在创建我们的第一个博客</p>
+<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="err">石名的技术博客</span>
+<span class="n">Date</span><span class="o">:</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">28</span> <span class="mi">11</span><span class="o">:</span><span class="mi">11</span>
+<span class="n">Modified</span><span class="o">:</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">28</span> <span class="mi">11</span><span class="o">:</span><span class="mi">11</span>
+<span class="n">Category</span><span class="o">:</span> <span class="n">Python</span>
+<span class="n">Tags</span><span class="o">:</span> <span class="n">Python</span>
+<span class="n">Slug</span><span class="o">:</span> <span class="n">Python</span>
+<span class="n">Authors</span><span class="o">:</span> <span class="err">石名</span>
+
+<span class="err">这是我的第一篇文章</span>
+</pre></div>
+
+
+<p>7)然后运行命令生成静态网页</p>
+<div class="highlight"><pre><span></span>pelican content
+</pre></div>
+
+
+<p>8)执行之后，output 目录会多出一些文件，我们的markdown文件也会转为html文件放在该目录下</p>
+<p>9)网站的主题会设置颜色、布局选项等。尝试一个新主题非常容易，你可以在http://www.pelicanthemes.com/预览其中的许多内容。</p>
+<p>10)我们在柏可可的根目录下，将主题克隆下来</p>
+<div class="highlight"><pre><span></span>git clone https://github.com/getpelican/pelican-themes.git
+</pre></div>
+
+
+<p>11)然后再你的目录里会生成pelican-themes文件，这里会有很多的主题来选择。</p>
+<p>12)打开pelicanconf.py配置文件内添加自己喜欢的主题</p>
+<div class="highlight"><pre><span></span>THEME = &#39;pelican-themes/bootstrap2&#39;
+</pre></div>
+
+
+<p>13)在次生成静态页面，并且启动服务</p>
+<div class="highlight"><pre><span></span>pelican content
+pelican --listen
+</pre></div>
+
+
+<p>14)访问http://localhost:8000</p>
+<p>这个样子我们的博客就已经大功告成了，只要我们把output文件夹push到github就可以进行访问了。</p>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

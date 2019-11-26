@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>石名的技术博客 | 石名的技术博客</title>
+	<meta charset="utf-8" />
+    <meta name="author" content="石名">
+	<link rel="stylesheet" href="/theme/css/franticworld.css" type="text/css" />
+	<link href="/theme/css/pygments.css" rel="stylesheet">
+</head>
+<body background="/theme/img/pattern.png">
+		<div class="nav-banner">
+		<a href="">石名的技术博客</a>
+		</div>
+		
+		<div class="content">
+
+<div class="metabox">
+	<p class="metaday">220</p>
+	<p class="metayear">2019</p>
+	<p class="metacategory">技术</p>
+</div>
+<div class="arcticlecontentbox">
+	<div class="articlecontent">
+		<a class="articletitle" href="/11.html " >石名的技术博客</a>
+		<p><strong>如何用django自己建立一个验证码</strong></p>
+<p>1.导入相应的包</p>
+<div class="highlight"><pre><span></span><span class="c1"># 导入加密库</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="c1"># 导入图片库</span>
+<span class="c1">#会图画</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageDraw</span>
+<span class="c1"># 字体库</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageFont</span>
+
+<span class="c1"># 图片库</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="c1"># 随机库</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+
+
+<p>代码如下：
+wiews视图中</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="err">验证码</span>
+
+<span class="err">#</span> <span class="err">定义验证码</span>
+<span class="kr">class</span> <span class="nx">MyCode</span><span class="p">(</span><span class="nx">View</span><span class="p">)</span><span class="o">:</span>
+    <span class="err">#</span> <span class="err">定义随机取色方法</span>
+    <span class="nx">def</span> <span class="nx">get_randm_color</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">R</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+        <span class="nx">G</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+        <span class="nx">B</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">R</span><span class="p">,</span> <span class="nx">G</span><span class="p">,</span> <span class="nx">B</span><span class="p">)</span>
+
+    <span class="nx">def</span> <span class="nx">get</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span><span class="nx">request</span><span class="p">)</span><span class="o">:</span>
+        <span class="err">#定义画布</span>
+        <span class="nx">img_site</span><span class="o">=</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+        <span class="err">#定义图像</span><span class="p">,</span><span class="err">颜色种类，画布，背景颜色</span>
+        <span class="nx">image</span><span class="o">=</span><span class="nx">Image</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span><span class="nx">img_site</span><span class="p">,</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="err">#定义画笔</span>
+        <span class="nx">draw</span><span class="o">=</span><span class="nx">ImageDraw</span><span class="p">.</span><span class="nx">Draw</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+        <span class="err">#随机字符串的组成</span>
+        <span class="nx">source</span><span class="o">=</span><span class="s1">&#39;0123456sm521fhz&#39;</span>
+        <span class="err">#定义容器</span>
+        <span class="nx">code_str</span><span class="o">=</span><span class="s1">&#39;s&#39;</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">:</span>
+            <span class="err">#取色</span>
+            <span class="nx">text_color</span><span class="o">=</span><span class="nx">self</span><span class="p">.</span><span class="nx">get_randm_color</span><span class="p">()</span>
+            <span class="err">#获取一个字符串</span>
+            <span class="nx">tmp_num</span><span class="o">=</span><span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="nx">len</span><span class="p">(</span><span class="nx">source</span><span class="p">))</span>
+            <span class="err">#获取字符集</span>
+            <span class="nx">random_str</span><span class="o">=</span><span class="nx">source</span><span class="p">[</span><span class="nx">tmp_num</span><span class="p">]</span>
+            <span class="err">#将随机生成的字符串放入定义好的容器</span>
+            <span class="nx">code_str</span> <span class="o">+=</span> <span class="nx">random_str</span>
+
+            <span class="err">#将文字输入绘图</span>
+            <span class="nx">draw</span><span class="p">.</span><span class="nx">text</span><span class="p">((</span><span class="mi">10</span><span class="o">+</span><span class="mi">30</span><span class="o">*</span><span class="nx">i</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span><span class="nx">random_str</span><span class="p">,</span><span class="nx">text_color</span><span class="p">)</span>
+
+        <span class="err">#建立</span><span class="nx">io文件流</span>
+        <span class="nx">buf</span><span class="o">=</span><span class="nx">io</span><span class="p">.</span><span class="nx">BytesIO</span><span class="p">()</span>
+        <span class="err">#保存内存中</span>
+        <span class="nx">image</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">buf</span><span class="p">,</span><span class="s1">&#39;png&#39;</span><span class="p">)</span>
+        <span class="err">#将验证码放入</span><span class="nx">session</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">session</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span><span class="o">=</span><span class="nx">code_str</span>
+        <span class="nx">print</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">session</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">])</span>
+        <span class="err">#返回文件流图像</span>
+        <span class="k">return</span> <span class="nx">HttpResponse</span><span class="p">(</span><span class="nx">buf</span><span class="p">.</span><span class="nx">getvalue</span><span class="p">(),</span><span class="s1">&#39;image/png&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Vue中</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;template&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+
+ <span class="nt">&lt;Form</span>
+        <span class="na">ref=</span><span class="s">&quot;form&quot;</span>
+        <span class="na">:showErrorTip=</span><span class="s">&quot;showErrorTip&quot;</span>
+        <span class="na">:rules=</span><span class="s">&quot;rules&quot;</span>
+        <span class="na">:model=</span><span class="s">&quot;model&quot;</span>
+        <span class="nt">&gt;</span>
+          <span class="nt">&lt;FormItem</span> <span class="na">label=</span><span class="s">&quot;验证码&quot;</span> <span class="na">prop=</span><span class="s">&quot;code&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">v-model=</span><span class="s">&quot;model.code&quot;</span><span class="nt">/&gt;&lt;img</span> <span class="na">:src=</span><span class="s">&quot;src&quot;</span> <span class="err">@</span><span class="na">click=</span><span class="s">&quot;chageImgcode&quot;</span><span class="nt">/&gt;</span>
+
+          <span class="nt">&lt;/FormItem&gt;</span>
+
+
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+
+<span class="nt">&lt;script&gt;</span>
+export default {
+    data () {
+    retun{
+     src:&#39;http://127.0.0.1:8000/mycode/&#39;,
+     model:{
+     code:&#39;&#39;,
+     }
+
+    }
+    },
+    methods:{
+        //点击刷新验证码
+    chageImgcode(){
+      //生成随机字符串
+      let num=Math.ceil(Math.random()*10);
+      this.src=this.src+&#39;?code&#39;+num;
+    }
+    },
+    submit(){
+       let validResult = this.$refs.form.valid();
+
+        let code=this.model.code
+        // let image_code = this.model.image_code;
+  if (validResult.result) {
+        //请求后台接口
+      //定义一个传递变量
+      var _this=this;
+      this.axios.get(&#39;http://localhost:8000/register/&#39;,{
+        //设置参数
+        params:{
+          username:username,
+          password:password,
+          // image_code:image_code,
+          code:code
+
+        }
+      }).then(function (result) {
+      if (result.data.code==200){
+          //跳转
+          _this.$router.push(&#39;/login&#39;);
+          console.log(result);
+        }else {
+           _this.$Message(result.data.message);
+        }
+
+      });
+}
+
+<span class="nt">&lt;script&gt;</span>          
+</pre></div>
+
+
+<p>django后台判断前台验证码是否正确</p>
+<div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">Register</span><span class="p">(</span><span class="nx">APIView</span><span class="p">)</span><span class="o">:</span>
+    <span class="nx">def</span> <span class="nx">get</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">request</span><span class="p">)</span><span class="o">:</span>
+
+ <span class="err">#获取随机验证码</span>
+        <span class="nx">code</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">GET</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="s1">&#39;未收到验证码&#39;</span><span class="p">)</span>
+        <span class="nx">mycode</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="nx">None</span><span class="p">)</span>
+        <span class="nx">print</span><span class="p">(</span><span class="nx">mycode</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nx">code</span> <span class="o">!=</span> <span class="nx">mycode</span>:
+            <span class="kt">res</span><span class="o">=</span><span class="p">{}</span>
+            <span class="nx">res</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span><span class="o">=</span><span class="mi">404</span>
+            <span class="nx">res</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;验证码输入错误&#39;</span>
+            <span class="k">return</span> <span class="nx">Response</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span>
+</pre></div>
+	</div>
+	
+	       
+</div>
+
+		</div>
+		
+		<div class="sidebar">
+<div class="sidebarcategory">
+<h4>Categories</h4>
+	<li><a href="/category/ji-zhu.html">技术</a></li>
+</div>
+
+<div class="sidebarpages">
+</div>
+
+<div class="sidebarblogroll">
+<h4>Blogroll</h4>
+    <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+    <li><a href="http://python.org/" target="_blank">Python.org</a></li>
+    <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja2</a></li>
+    <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+</div>
+
+<div class="sidebarsocial">
+<h4>Social</h4>
+    <li><a href="#">You can add links in your config file</a></li>
+    <li><a href="#">Another social link</a></li>
+</div>		</div>
+		
+		<footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>,
+				Theme by <a href="http://frantic1048.com/">Frantic1048</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+</body>
+</html>

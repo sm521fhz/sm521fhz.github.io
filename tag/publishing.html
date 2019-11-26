@@ -130,6 +130,105 @@ v-pre主要用来跳过这个元素和它的子元素编译过程。可以用来
 		<p class="metacategory">技术</p>
 	</div>
 	<div class="summarybox">
+		<a class="summarytitle" href="/11.html " >石名的技术博客</a>
+		<p><strong>如何用django自己建立一个验证码</strong></p>
+<p>1.导入相应的包</p>
+<div class="highlight"><pre><span></span><span class="c1"># 导入加密库</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="c1"># 导入图片库</span>
+<span class="c1">#会图画</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageDraw</span>
+<span class="c1"># 字体库</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageFont</span>
+
+<span class="c1"># 图片库</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="c1"># 随机库</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+
+
+<p>代码如下：
+wiews视图中</p>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="err">验证码</span>
+
+<span class="err">#</span> <span class="err">定义验证码</span>
+<span class="kr">class</span> <span class="nx">MyCode</span><span class="p">(</span><span class="nx">View</span><span class="p">)</span><span class="o">:</span>
+    <span class="err">#</span> <span class="err">定义随机取色方法</span>
+    <span class="nx">def</span> <span class="nx">get_randm_color</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">R</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+        <span class="nx">G</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+        <span class="nx">B</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nx">R …</span></pre></div>
+		<a class="btnmore" href="/11.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/12.html " >石名的技术博客</a>
+		<p><strong>Django查询语句</strong></p>
+<p><strong>查询语句</strong></p>
+<div class="highlight"><pre><span></span> #查询全部数据 翻译为 select * from user; all()返回值是list
+    res = User.objects.all()
+    #print(res)
+    #分页 0开始位置,2结束位置，注意2不是取几条
+    res = User.objects.all()[0,2]
+    #print(res)
+
+    #查询限定条件的数据 翻译为 select * from user where username = &#39;新用户123&#39; and逻辑使用多个参数传递
+    res = User.objects.filter(username=&#39;新用户&#39;,password=&#39;你好&#39;)
+    #print(res)
+
+    #只取一条 翻译 select * from …</pre></div>
+		<a class="btnmore" href="/12.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
+		<a class="summarytitle" href="/13.html " >石名的技术博客</a>
+		<p><strong>三分钟创建一个静态网页</strong></p>
+<p><strong>这个静态网页可以用来做你自己的博客，pelican是以为法国开发者研发的，非常好用，它的每一篇文章会事先渲染成HTML静态文件，访问速度非常快。</strong></p>
+<p>1)安装pelcan和markdown</p>
+<div class="highlight"><pre><span></span>pip install pelican  markdown --upgrade
+</pre></div>
+
+
+<p>2)创建一个文件夹用来作为博客的目录</p>
+<div class="highlight"><pre><span></span>mkdir 博客目录
+</pre></div>
+
+
+<p>3)cd到该目录下运行命令生成博客的框架</p>
+<div class="highlight"><pre><span></span>cd 博客目录
+pelican-quickstart
+</pre></div>
+
+
+<p>4)安装过程中会有很多的配置，不知道的可以直接n，后期都是可以进行修改的</p>
+<div class="highlight"><pre><span></span>&gt; Where do you want to create your new web site? [.]
+&gt; What will be the title of this web site? 商伟的技术博客
+&gt; Who will be the …</pre></div>
+		<a class="btnmore" href="/13.html">more ...</a>
+	</div>
+</div>
+<div class="summarycontainer">
+	<div class="metabox">
+		<p class="metaday">220</p>
+		<p class="metayear">2019</p>
+		<p class="metacategory">技术</p>
+	</div>
+	<div class="summarybox">
 		<a class="summarytitle" href="/2.html " >石名的技术博客</a>
 		<p><strong>Django 基于vue和ajax的分页</strong></p>
 <p><strong>1、基本工作原理：</strong>
@@ -292,96 +391,10 @@ git remote add origin https://gitee.com/sm521fhz …</pre></div>
 		<a class="btnmore" href="/6.html">more ...</a>
 	</div>
 </div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">220</p>
-		<p class="metayear">2019</p>
-		<p class="metacategory">技术</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/7.html " >石名的技术博客</a>
-		<p><strong>django多对多操作</strong></p>
-<p>django 多对多操作</p>
-<p><strong>模型</strong></p>
-<p>~~~~shell from django.db import models</p>
-<h1>老师 class Teacher(models.Model): name = models.CharField(max_length=32)</h1>
-<h1>学生 class Student(models.Model): name = models.CharField(max_length=32)</h1>
-<p>teachers = models.ManyToManyField(to='Teacher',on_delete=models.CASCADE) ```</p>
-<p>查询</p>
-<div class="highlight"><pre><span></span>**添加**
-</pre></div>
-
-
-<p>shell # 通过老师查学生 teacher = Teacher.objects.filter(id=1).first()
- students …</p>
-		<a class="btnmore" href="/7.html">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">220</p>
-		<p class="metayear">2019</p>
-		<p class="metacategory">技术</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/8.html " >石名的技术博客</a>
-		<h1><code>VUE拦截器</code></h1>
-<p>vue 拦截器</p>
-<p>路由拦截器</p>
-<p>已路由为导向</p>
-<div class="highlight"><pre><span></span>shell
-  router.beforeEach((to,from,next)=&gt;{
-      if(to.path==&#39;/login&#39; || to.path==&#39;reg&#39; || localStorage.getItem(&#39;token&#39;)){
-        next();
-      }else{
-        alert(&#39;请重新登录&#39;);
-        next(&#39;/login&#39;);
-      }
-  })
-</pre></div>
-
-
-<p>请求拦截器</p>
-<p>当发送请求时才会触发此功能</p>
-<div class="highlight"><pre><span></span>shell
-  axios.interceptors.request.use(function (config) {
-    let token = window.localStorage.getItem(&quot;token&quot;);
-        if (token) {
-            config.headers.token = token;    //将token放到请求头发送给服务器
-        }
-       return …</pre></div>
-		<a class="btnmore" href="/8.html">more ...</a>
-	</div>
-</div>
-<div class="summarycontainer">
-	<div class="metabox">
-		<p class="metaday">220</p>
-		<p class="metayear">2019</p>
-		<p class="metacategory">技术</p>
-	</div>
-	<div class="summarybox">
-		<a class="summarytitle" href="/9.html " >石名的技术博客</a>
-		<p><strong>Django+中间件+登陆验证</strong></p>
-<p>Django的request请求需要首先经过中间件处理，再通过URL查找到对应的views函数进行处理。在settings的MIDDLEWARE_CLASSES中添加设置中间件进行激活，大致原理如下图所示：</p>
-<p>https://images2015.cnblogs.com/blog/790508/201705/790508-20170501212912023-388357388.png</p>
-<p>在使用Django框架进行开发的过程中，遇到一个问题：要求对觉得多数页面请求request进行用户登录验证，如果用户没有登录则跳转回到登录页面；如果用户登录了，则直接跳转到新的链接页面？</p>
-<p>在django中提供了一种自定义装饰器@login_required来实现验证用户登录：</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
-
-<span class="nd">@login_required</span>
- <span class="k">def</span> <span class="nf">home</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-     <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;home.html&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p>但是这种方式有一个不方便的地方：如果每添加一个功能需要验证登录，就需要添加@login_required来进行装饰。如果有大量的功能需要进行登录验证 …</p>
-		<a class="btnmore" href="/9.html">more ...</a>
-	</div>
-</div>
 
 <p class="paginator">
-    Page 1 / 1
+    Page 1 / 2
+        <a href="/tag/publishing2.html">next&raquo;</a>
 </p>
 		</div>
 		
